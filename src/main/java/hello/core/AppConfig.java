@@ -36,12 +36,4 @@ public class AppConfig {
 //        return new FixDiscountPolicy();
         return new RateDiscountPolicy();
     }
-
-    @Configuration
-    @ComponentScan(
-            excludeFilters = @ComponentScan.Filter(type = FilterType.ANNOTATION, classes = Configuration.class)
-    )
-    public static class AutoAppConfig {
-
-    }
 }
