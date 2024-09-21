@@ -3,20 +3,15 @@ package hello.core.order;
 import hello.core.discount.DiscountPolicy;
 import hello.core.member.Member;
 import hello.core.member.MemberRepo;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
+@RequiredArgsConstructor
 public class OrderServiceImpl implements OrderService {
 
     private final MemberRepo memberRepo;
     private final DiscountPolicy discountPolicy;
-
-    @Autowired
-    public OrderServiceImpl(MemberRepo memberRepo,DiscountPolicy discountPolicy) {
-        this.discountPolicy = discountPolicy;
-        this.memberRepo = memberRepo;
-    }
 
     @Override
     public Order createOrder(Long memberId, String itemName, int itemPrice) {
@@ -25,7 +20,6 @@ public class OrderServiceImpl implements OrderService {
 
         return new Order(memberId, itemName, itemPrice, discountPrice);
     }
-
     public MemberRepo getMemberRepo() {
         return memberRepo;
     }
