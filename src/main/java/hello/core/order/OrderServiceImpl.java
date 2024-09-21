@@ -4,14 +4,19 @@ import hello.core.discount.DiscountPolicy;
 import hello.core.member.Member;
 import hello.core.member.MemberRepo;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component
-@RequiredArgsConstructor
 public class OrderServiceImpl implements OrderService {
 
     private final MemberRepo memberRepo;
     private final DiscountPolicy discountPolicy;
+
+    public OrderServiceImpl(MemberRepo memberRepo, DiscountPolicy discountPolicy) {
+        this.memberRepo = memberRepo;
+        this.discountPolicy = discountPolicy;
+    }
 
     @Override
     public Order createOrder(Long memberId, String itemName, int itemPrice) {
