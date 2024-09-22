@@ -20,12 +20,11 @@ public class BeanLifeCycleTest {
     @Configuration
     static class lifeCycleConfig {
 
-        @Bean(initMethod = "init", destroyMethod = "close")
+        @Bean
         public NetworkClient networkClient() {
             NetworkClient networkClient = new NetworkClient();
             networkClient.setUrl("http://127.0.0.1:8080");
             return networkClient;
         }
     }
-
 }
